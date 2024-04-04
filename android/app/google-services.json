@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "64945158154",
+    "firebase_url": "https://form-2c418-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "form-2c418",
+    "storage_bucket": "form-2c418.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:64945158154:android:3c0803dd3e8741276e87f3",
+        "android_client_info": {
+          "package_name": "com.example.form"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjPBmx6UYQ7wxBBaJZk3eTihbvvMaVsmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

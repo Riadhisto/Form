@@ -40,6 +40,10 @@ class AuthScreen {
     } on FirebaseAuthException catch (error) {
       if (error.code == 'email-already-in-use') {
         return 'This account already exists.';
+      } else if (error.code == 'invalid-email') {
+        return 'This email is invalid';
+      } else if (error.code == 'weak-password') {
+        return 'This password is weak';
       } else {
         return '3mitha';
       }
@@ -58,7 +62,9 @@ class AuthScreen {
       return 'Logged in successfully';
     } on FirebaseAuthException catch (error) {
       if (error.code == 'user-not-found') {
-        return 'This username does not exist.';
+        return 'This account does not exist.';
+      } else if (error.code == 'invalid-email') {
+        return 'This email is invalid';
       } else if (error.code == 'wrong-password') {
         return 'Incorrect password';
       } else {

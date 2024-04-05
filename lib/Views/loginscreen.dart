@@ -62,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     cursorColor: Colors.blueAccent,
                     decoration: textInputDecoration.copyWith(
                       labelText: 'Email',
+                      hintText:'Enter your email',
                       prefixIcon: const Icon(Icons.account_circle),
                       prefixIconColor: Colors.blueAccent,
                     ),
@@ -84,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     autocorrect: false,
                     decoration: textInputDecoration.copyWith(
                       labelText: 'Password',
+                      hintText:'Enter your password',
                       prefixIcon: const Icon(Icons.password),
                       prefixIconColor: Colors.blueAccent,
                     ),

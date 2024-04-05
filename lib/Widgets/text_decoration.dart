@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const textInputDecoration = InputDecoration(
     labelStyle: TextStyle(color: Colors.blueAccent, fontSize: 20),
+    hintStyle: TextStyle(color: Colors.grey, fontSize: 15),
     floatingLabelStyle: TextStyle(color: Colors.blueAccent, fontSize: 20),
     filled: true,
     fillColor: Colors.white,

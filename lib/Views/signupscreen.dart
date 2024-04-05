@@ -71,8 +71,10 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     keyboardType: TextInputType.emailAddress,
                     textCapitalization: TextCapitalization.sentences,
                     cursorColor: Colors.blueAccent,
-                    decoration:
-                        textInputDecoration.copyWith(labelText: 'Email'),
+                    decoration: textInputDecoration.copyWith(
+                      labelText: 'Email',
+                      hintText: 'Enter your email',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -88,8 +90,10 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     enableSuggestions: false,
                     autocorrect: false,
                     cursorColor: Colors.blueAccent,
-                    decoration:
-                        textInputDecoration.copyWith(labelText: 'Password'),
+                    decoration: textInputDecoration.copyWith(
+                      labelText: 'Password',
+                      hintText: 'Enter your password',
+                    ),
                   ),
                   const SizedBox(height: 80),
                   TextFormField(
@@ -103,8 +107,10 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     keyboardType: TextInputType.name,
                     cursorColor: Colors.blueAccent,
                     textCapitalization: TextCapitalization.characters,
-                    decoration:
-                        textInputDecoration.copyWith(labelText: 'Family name'),
+                    decoration: textInputDecoration.copyWith(
+                      labelText: 'Family name',
+                      hintText: 'Enter your family name',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -118,8 +124,10 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     keyboardType: TextInputType.name,
                     cursorColor: Colors.blueAccent,
                     textCapitalization: TextCapitalization.words,
-                    decoration:
-                        textInputDecoration.copyWith(labelText: 'First name'),
+                    decoration: textInputDecoration.copyWith(
+                      labelText: 'First name',
+                      hintText: 'Enter your first name',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Row(
@@ -203,7 +211,10 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
                     cursorColor: Colors.blueAccent,
-                    decoration: textInputDecoration.copyWith(labelText: 'Age'),
+                    decoration: textInputDecoration.copyWith(
+                      labelText: 'Age',
+                      hintText: 'Enter your age',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -216,8 +227,10 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     controller: _controllerPhone,
                     keyboardType: TextInputType.phone,
                     cursorColor: Colors.blueAccent,
-                    decoration:
-                        textInputDecoration.copyWith(labelText: 'Phone number'),
+                    decoration: textInputDecoration.copyWith(
+                      labelText: 'Phone number',
+                      hintText: 'Enter your phone number',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
@@ -231,8 +244,10 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     keyboardType: TextInputType.streetAddress,
                     textCapitalization: TextCapitalization.words,
                     cursorColor: Colors.blueAccent,
-                    decoration:
-                        textInputDecoration.copyWith(labelText: 'Address'),
+                    decoration: textInputDecoration.copyWith(
+                      labelText: 'Address',
+                      hintText: 'Enter your address',
+                    ),
                   ),
                   const SizedBox(height: 16),
                   const SizedBox(

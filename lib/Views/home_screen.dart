@@ -1,38 +1,26 @@
+import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:form/Views/authscreen.dart';
-import 'package:form/Views/formscreen.dart';
+import 'package:flutter/services.dart';
+import 'package:form/Views/form_screen.dart';
 import 'package:form/Widgets/button_decoration.dart';
 import 'package:form/Widgets/text_decoration.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreentState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _SignUpScreentState extends State<SignUpScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   final formstate = GlobalKey<FormState>();
-  final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerPassword = TextEditingController();
   final TextEditingController _controllerFamily = TextEditingController();
   final TextEditingController _controllerFirst = TextEditingController();
   String _gender = 'Male';
   final TextEditingController _controllerAge = TextEditingController();
+  final TextEditingController _controllerEmail = TextEditingController();
   final TextEditingController _controllerPhone = TextEditingController();
   final TextEditingController _controllerAddress = TextEditingController();
-
-  @override
-  void dispose() {
-    _controllerEmail.dispose();
-    _controllerPassword.dispose();
-    _controllerFamily.dispose();
-    _controllerFirst.dispose();
-    _controllerAge.dispose();
-    _controllerPhone.dispose();
-    _controllerAddress.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,42 +51,6 @@ class _SignUpScreentState extends State<SignUpScreen> {
                   TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
-                      }
-                      return null;
-                    },
-                    controller: _controllerEmail,
-                    keyboardType: TextInputType.emailAddress,
-                    textCapitalization: TextCapitalization.sentences,
-                    cursorColor: Colors.blueAccent,
-                    decoration: textInputDecoration.copyWith(
-                      labelText: 'Email',
-                      hintText: 'Enter your email',
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      return null;
-                    },
-                    controller: _controllerPassword,
-                    textCapitalization: TextCapitalization.none,
-                    obscureText: true,
-                    enableSuggestions: false,
-                    autocorrect: false,
-                    cursorColor: Colors.blueAccent,
-                    decoration: textInputDecoration.copyWith(
-                      labelText: 'Password',
-                      hintText: 'Enter your password',
-                    ),
-                  ),
-                  const SizedBox(height: 80),
-                  TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
                         return 'Please enter your family name';
                       }
                       return null;
@@ -125,9 +77,8 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     cursorColor: Colors.blueAccent,
                     textCapitalization: TextCapitalization.words,
                     decoration: textInputDecoration.copyWith(
-                      labelText: 'First name',
-                      hintText: 'Enter your first name',
-                    ),
+                        labelText: 'First name',
+                        hintText: 'Enter your first name'),
                   ),
                   const SizedBox(height: 16),
                   Row(
@@ -208,6 +159,10 @@ class _SignUpScreentState extends State<SignUpScreen> {
                       return null;
                     },
                     controller: _controllerAge,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]*')),
+                      LengthLimitingTextInputFormatter(2),
+                    ],
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
                     cursorColor: Colors.blueAccent,
@@ -218,13 +173,37 @@ class _SignUpScreentState extends State<SignUpScreen> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your email';
+                        } else if (!RegExp(
+                                r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$')
+                            .hasMatch(value)) {
+                          return 'Please enter a valid email address';
+                        }
+                        return null;
+                      },
+                      controller: _controllerEmail,
+                      keyboardType: TextInputType.emailAddress,
+                      textCapitalization: TextCapitalization.sentences,
+                      cursorColor: Colors.blueAccent,
+                      decoration: textInputDecoration.copyWith(
+                          labelText: 'Email', hintText: 'Enter your email')),
+                  const SizedBox(height: 16),
+                  TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your phone number';
+                      } else if (value.length < 9) {
+                        return 'Invalid phone number';
                       }
                       return null;
                     },
                     controller: _controllerPhone,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp(r'0+[0-9]*')),
+                      LengthLimitingTextInputFormatter(10)
+                    ],
                     keyboardType: TextInputType.phone,
                     cursorColor: Colors.blueAccent,
                     decoration: textInputDecoration.copyWith(
@@ -245,9 +224,7 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     textCapitalization: TextCapitalization.words,
                     cursorColor: Colors.blueAccent,
                     decoration: textInputDecoration.copyWith(
-                      labelText: 'Address',
-                      hintText: 'Enter your address',
-                    ),
+                        labelText: 'Address', hintText: 'Enter your address'),
                   ),
                   const SizedBox(height: 16),
                   const SizedBox(
@@ -257,54 +234,27 @@ class _SignUpScreentState extends State<SignUpScreen> {
                     width: 280,
                     height: 60,
                     child: ElevatedButton(
-                      onPressed: () async {
+                      onPressed: () {
                         if (formstate.currentState!.validate()) {
-                          final message = await AuthScreen().signUp(
-                            email: _controllerEmail.text.trim().toLowerCase(),
-                            password: _controllerPassword.text.trim(),
-                            family: _controllerFamily.text.trim(),
-                            first: _controllerFirst.text.trim(),
-                            gender: _gender,
-                            age: _controllerAge.text.trim(),
-                            phone: _controllerPhone.text.trim(),
-                            address: _controllerAddress.text.trim(),
+                          formstate.currentState!.save();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FormScreen(
+                                      family: _controllerFamily.text.trim(),
+                                      first: _controllerFirst.text.trim(),
+                                      gender: _gender,
+                                      age: _controllerAge.text.trim(),
+                                      email: _controllerEmail.text.trim(),
+                                      phone: _controllerPhone.text.trim(),
+                                      address: _controllerAddress.text.trim(),
+                                    )),
                           );
-                          if (message!.contains('Signed up successfully')) {
-                            if (context.mounted) {
-                              Navigator.of(context)
-                                  .pushReplacement(MaterialPageRoute(
-                                      builder: (context) => FormScreen(
-                                            family:
-                                                _controllerFamily.text.trim(),
-                                            first: _controllerFirst.text.trim(),
-                                            gender: _gender,
-                                            age: _controllerAge.text.trim(),
-                                            email: _controllerEmail.text
-                                                .trim()
-                                                .toLowerCase(),
-                                            phone: _controllerPhone.text.trim(),
-                                            address:
-                                                _controllerAddress.text.trim(),
-                                          )));
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(message),
-                                ),
-                              );
-                            }
-                          }
-                          if (context.mounted) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(message),
-                              ),
-                            );
-                          }
                         }
                       },
                       style: buttonInputDecoration,
                       child: const Text(
-                        'Sign up',
+                        'Submit',
                         style: TextStyle(fontSize: 26),
                       ),
                     ),

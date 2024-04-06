@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:form/Views/authscreen.dart';
-import 'package:form/Views/formscreen.dart';
-import 'package:form/Views/homescreen.dart';
-import 'package:form/Views/signupscreen.dart';
+import 'package:form/Views/auth_screen.dart';
+import 'package:form/Views/form_screen.dart';
+import 'package:form/Views/home_screen.dart';
+import 'package:form/Views/signup_screen.dart';
 import 'package:form/Widgets/button_decoration.dart';
 import 'package:form/Widgets/text_decoration.dart';
 
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     cursorColor: Colors.blueAccent,
                     decoration: textInputDecoration.copyWith(
                       labelText: 'Email',
-                      hintText:'Enter your email',
+                      hintText: 'Enter your email',
                       prefixIcon: const Icon(Icons.account_circle),
                       prefixIconColor: Colors.blueAccent,
                     ),
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     autocorrect: false,
                     decoration: textInputDecoration.copyWith(
                       labelText: 'Password',
-                      hintText:'Enter your password',
+                      hintText: 'Enter your password',
                       prefixIcon: const Icon(Icons.password),
                       prefixIconColor: Colors.blueAccent,
                     ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:form/Views/loginscreen.dart';
+import 'package:form/Views/login_screen.dart';
 import 'package:form/firebase_options.dart';
 
 Future<void> main() async {
@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Form',
       home: LoginScreen(),
     );
   }

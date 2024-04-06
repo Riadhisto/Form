@@ -227,7 +227,7 @@ class _SignUpScreentState extends State<SignUpScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your phone number';
                       } else if (value.length < 9) {
-                        return 'Invalid phone number';
+                        return 'Please enter a valid phone number';
                       }
                       return null;
                     },
